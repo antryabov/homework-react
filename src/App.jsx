@@ -1,37 +1,23 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import Button from './components/Button/Button';
+import Headline from './components/Headline/Headline';
+import SearchText from './components/SearchText/SearchText';
 
 function App() {
-	const [count, setCount] = useState(0);
+	const data = [
+		{
+			buttonSearch: 'Искать',
+			search: 'Поиск',
+			textSearch:
+				'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'
+		}
+	];
 
 	return (
 		<>
-			<div>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
+			<Headline text={data[0].search} />
+			<SearchText text={data[0].textSearch} />
+			<Button text={data[0].buttonSearch} />
 		</>
 	);
 }
