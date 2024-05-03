@@ -1,7 +1,7 @@
 import './Headline.css';
 
-function Headline({ text }) {
-	return <h1 className="main__header">{text}</h1>;
+function Headline({ text, className }) {
+	return <h2 className={className}>{text}</h2>;
 }
 
 export default Headline;

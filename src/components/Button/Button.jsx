@@ -1,7 +1,12 @@
 import './Button.css';
 
-function Button({ text }) {
-	return <button className="main__button">{text}</button>;
+function Button({ text, onClick, className }) {
+	const addSecondClass = 'button' + (className ? ' ' + className : '');
+	return (
+		<button className={addSecondClass} onClick={onClick}>
+			{text}
+		</button>
+	);
 }
 
 export default Button;

@@ -1,0 +1,39 @@
+.header__nav {
+	display: flex;
+	gap: 32px;
+	color: rgb(168, 174, 191);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.header__nav > a:hover,
+.header__favorites > a:hover {
+	color: rgb(255, 255, 255);
+}
+
+.header__favorites {
+	display: flex;
+	gap: 8px;
+}
+
+.header__favorites-count {
+	width: 24px;
+	height: 24px;
+	left: 136px;
+	right: -136px;
+	top: 12px;
+	bottom: -12px;
+	border-radius: 50%;
+	color: rgb(255, 255, 255);
+	background: rgb(123, 110, 246);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header__sign-in {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}

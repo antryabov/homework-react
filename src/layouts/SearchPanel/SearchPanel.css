@@ -1,0 +1,5 @@
+.main__search-panel {
+	width: 588px;
+	display: flex;
+	flex-direction: column;
+}
