@@ -1,17 +1,17 @@
-.main__search-form {
+.search-panel__search-form {
 	position: relative;
 	display: flex;
 	justify-content: start;
 	gap: 8px;
 }
 
-.main__search-icon {
+.search-panel__search-icon {
 	position: absolute;
 	left: 16px;
 	top: 19px;
 }
 
-.main__search-form > input {
+.search-panel__search-form > input {
 	border: 1px solid rgb(50, 59, 84);
 	border-radius: 12px;
 	background: rgba(0, 0, 0, 0.1);
@@ -27,6 +27,6 @@
 	text-align: left;
 }
 
-.main__search-form > input::placeholder {
+.search-panel__search-form > input::placeholder {
 	color: rgb(71, 80, 105);
 }

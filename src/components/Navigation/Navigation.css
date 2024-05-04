@@ -7,6 +7,11 @@
 	line-height: 24px;
 }
 
+.header__nav > a,
+.header__favorites > a {
+	transition: color linear 0.5s;
+}
+
 .header__nav > a:hover,
 .header__favorites > a:hover {
 	color: rgb(255, 255, 255);

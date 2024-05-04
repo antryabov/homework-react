@@ -1,0 +1,12 @@
+.films__card-button {
+	position: relative;
+	border-radius: 12px;
+	background: rgba(32, 40, 62, 0.8);
+	border: none;
+	transition: background linear 0.5s;
+	padding: 8px 8px 16px 8px;
+}
+
+.films__card-button:hover {
+	background: rgba(66, 78, 110, 0.8);
+}

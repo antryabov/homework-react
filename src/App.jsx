@@ -1,12 +1,55 @@
 import './App.css';
+import { useState } from 'react';
 import Headline from './components/Headline/Headline';
 import SearchText from './components/SearchText/SearchText';
-import SearchPanel from './layouts/SearchPanel/SearchPanel';
 import Header from './layouts/Header/Header';
 import Form from './components/Form/Form';
 import Navigation from './components/Navigation/Navigation';
+import SectionBlock from './components/SectionBlock/SectionBlock';
+import Main from './layouts/Main/Main';
+import FilmList from './components/FilmList/FilmList';
+
+const MOVIE_DATABASE = [
+	{
+		title: 'Shang Chi',
+		img: 'shang.jpeg',
+		raiting: '356',
+		id: 1
+	},
+	{
+		title: 'Black Chisas',
+		img: 'shang.jpeg',
+		raiting: '2',
+		id: 2
+	},
+	{
+		title: 'Shang Chi',
+		img: 'shang.jpeg',
+		raiting: '3356',
+		id: 1
+	},
+	{
+		title: 'Pokemon Chisas',
+		img: 'shang.jpeg',
+		raiting: '326',
+		id: 2
+	},
+	{
+		title: 'Avangers Chi',
+		img: 'shang.jpeg',
+		raiting: '1',
+		id: 1
+	},
+	{
+		title: 'Shang Chisas',
+		img: 'shang.jpeg',
+		raiting: '356',
+		id: 2
+	}
+];
 
 function App() {
+	const [films, setFilms] = useState(MOVIE_DATABASE);
 	const data = [
 		{
 			buttonSearch: 'Искать',
@@ -27,24 +70,30 @@ function App() {
 				<h1>{data[1].hiddenTitleForSEO}</h1>
 				<Navigation />
 			</Header>
-			<main className="main">
-				<SearchPanel>
-					<Headline text={data[0].search} className="main__title" />
+			<Main>
+				<SectionBlock className="main__search-panel">
+					<Headline
+						text={data[0].search}
+						className="search-panel__title"
+					/>
 					<SearchText text={data[0].textSearch} />
 					<Form
 						icon={
 							<img
-								className="main__search-icon"
+								className="search-panel__search-icon"
 								src="/search.svg"
 								alt="icon search"
 							/>
 						}
-						classNameFrom="main__search-form"
+						classNameFrom="search-panel__search-form"
 						textButton={data[0].buttonSearch}
 						placeholder={data[0].placeholderSearch}
 					/>
-				</SearchPanel>
-			</main>
+				</SectionBlock>
+				<SectionBlock className="main__films">
+					<FilmList films={films} />
+				</SectionBlock>
+			</Main>
 		</div>
 	);
 }

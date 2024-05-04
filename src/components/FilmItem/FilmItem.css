@@ -1,0 +1,57 @@
+.films__raiting {
+	top: 16px;
+	left: 16px;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	padding: 4px 8px 4px 8px;
+	border-radius: 8px;
+	backdrop-filter: blur(8px);
+	background: rgba(0, 0, 0, 0.65);
+	color: rgb(255, 189, 109);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.films__raiting > img {
+	width: 13px;
+	height: 13px;
+}
+
+.films__poster {
+	border-radius: 10px;
+}
+
+.films__favorites {
+	padding: 0px;
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+	justify-content: flex-start;
+	cursor: pointer;
+	background: none;
+	border: none;
+	color: rgb(123, 110, 246);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.films__info {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	color: rgb(235, 238, 245);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.films__title {
+	margin-bottom: 16px;
+}
