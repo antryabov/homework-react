@@ -5,6 +5,7 @@
 	border: none;
 	transition: background linear 0.5s;
 	padding: 8px 8px 16px 8px;
+	cursor: pointer;
 }
 
 .films__card-button:hover {

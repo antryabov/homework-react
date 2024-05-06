@@ -1,9 +1,10 @@
-import './Button.css';
+import styles from './Button.module.css';
 
 function Button({ text, onClick, className }) {
-	const addSecondClass = 'button' + (className ? ' ' + className : '');
+	const addSecondClass =
+		'button' + (styles[className] ? ' ' + styles[className] : '');
 	return (
-		<button className={addSecondClass} onClick={onClick}>
+		<button className={styles[addSecondClass]} onClick={onClick}>
 			{text}
 		</button>
 	);

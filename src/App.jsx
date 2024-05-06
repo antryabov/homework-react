@@ -1,4 +1,4 @@
-import './App.css';
+import styles from './App.module.css';
 import { useState } from 'react';
 import Headline from './components/Headline/Headline';
 import SearchText from './components/SearchText/SearchText';
@@ -26,25 +26,25 @@ const MOVIE_DATABASE = [
 		title: 'Shang Chi',
 		img: 'shang.jpeg',
 		raiting: '3356',
-		id: 1
+		id: 3
 	},
 	{
 		title: 'Pokemon Chisas',
 		img: 'shang.jpeg',
 		raiting: '326',
-		id: 2
+		id: 4
 	},
 	{
 		title: 'Avangers Chi',
 		img: 'shang.jpeg',
 		raiting: '1',
-		id: 1
+		id: 5
 	},
 	{
 		title: 'Shang Chisas',
 		img: 'shang.jpeg',
 		raiting: '356',
-		id: 2
+		id: 6
 	}
 ];
 
@@ -64,37 +64,37 @@ function App() {
 	];
 
 	return (
-		<div className="app">
+		<>
 			<Header>
 				<img src="/bookmark.svg" alt="bookmark" />
 				<h1>{data[1].hiddenTitleForSEO}</h1>
 				<Navigation />
 			</Header>
 			<Main>
-				<SectionBlock className="main__search-panel">
+				<SectionBlock className={styles['main__search-panel']}>
 					<Headline
 						text={data[0].search}
-						className="search-panel__title"
+						className={styles['search-panel__title']}
 					/>
 					<SearchText text={data[0].textSearch} />
 					<Form
 						icon={
 							<img
-								className="search-panel__search-icon"
+								className={styles['search-panel__search-icon']}
 								src="/search.svg"
 								alt="icon search"
 							/>
 						}
-						classNameFrom="search-panel__search-form"
+						classNameFrom={styles['search-panel__search-form']}
 						textButton={data[0].buttonSearch}
 						placeholder={data[0].placeholderSearch}
 					/>
 				</SectionBlock>
-				<SectionBlock className="main__films">
+				<SectionBlock className={styles['main__films']}>
 					<FilmList films={films} />
 				</SectionBlock>
 			</Main>
-		</div>
+		</>
 	);
 }
 

@@ -1,18 +1,18 @@
-import './Navigation.css';
+import styles from './Navigation.module.css';
 
 function Navigation() {
 	return (
-		<nav className="header__nav">
-			<a href="#" className="header__search-flims">
+		<nav className={styles['header__nav']}>
+			<a href="#" className={styles['header__search-flims']}>
 				Поиск фильмов
 			</a>
-			<div className="header__favorites">
-				<a href="#" className="header__favorites-link">
+			<div className={styles['header__favorites']}>
+				<a href="#" className={styles['header__favorites-link']}>
 					Мои фильмы
 				</a>
-				<div className="header__favorites-count">0</div>
+				<div className={styles['header__favorites-count']}>0</div>
 			</div>
-			<a href="#" className="header__sign-in">
+			<a href="#" className={styles['header__sign-in']}>
 				Войти
 				<img src="/sign-in.png" alt="sign-in icon" />
 			</a>
