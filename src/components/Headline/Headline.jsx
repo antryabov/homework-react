@@ -1,7 +1,7 @@
-import styles from './Headline.module.css';
+import './Headline.css';
 
-function Headline({ text, className }) {
-	return <h2 className={styles[className]}>{text}</h2>;
+function Headline({ children, className }) {
+	return <h2 className={className}>{children}</h2>;
 }
 
 export default Headline;

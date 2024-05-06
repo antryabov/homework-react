@@ -8,45 +8,7 @@ import Navigation from './components/Navigation/Navigation';
 import SectionBlock from './components/SectionBlock/SectionBlock';
 import Main from './layouts/Main/Main';
 import FilmList from './components/FilmList/FilmList';
-
-const MOVIE_DATABASE = [
-	{
-		title: 'Shang Chi',
-		img: 'shang.jpeg',
-		raiting: '356',
-		id: 1
-	},
-	{
-		title: 'Black Chisas',
-		img: 'shang.jpeg',
-		raiting: '2',
-		id: 2
-	},
-	{
-		title: 'Shang Chi',
-		img: 'shang.jpeg',
-		raiting: '3356',
-		id: 3
-	},
-	{
-		title: 'Pokemon Chisas',
-		img: 'shang.jpeg',
-		raiting: '326',
-		id: 4
-	},
-	{
-		title: 'Avangers Chi',
-		img: 'shang.jpeg',
-		raiting: '1',
-		id: 5
-	},
-	{
-		title: 'Shang Chisas',
-		img: 'shang.jpeg',
-		raiting: '356',
-		id: 6
-	}
-];
+import { MOVIE_DATABASE } from './constants/constants';
 
 function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
@@ -72,11 +34,10 @@ function App() {
 			</Header>
 			<Main>
 				<SectionBlock className={styles['main__search-panel']}>
-					<Headline
-						text={data[0].search}
-						className={styles['search-panel__title']}
-					/>
-					<SearchText text={data[0].textSearch} />
+					<Headline className={styles['search-panel__title']}>
+						{data[0].search}
+					</Headline>
+					<SearchText>{data[0].textSearch}</SearchText>
 					<Form
 						icon={
 							<img
