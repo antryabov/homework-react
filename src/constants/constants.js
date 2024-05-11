@@ -22,17 +22,16 @@ export const MOVIE_DATABASE = [
 		img: 'shang.jpeg',
 		raiting: '326',
 		id: 4
-	},
-	{
-		title: 'Avangers Chi',
-		img: 'shang.jpeg',
-		raiting: '1',
-		id: 5
-	},
-	{
-		title: 'Shang Chisas',
-		img: 'shang.jpeg',
-		raiting: '356',
-		id: 6
 	}
 ];
+
+export const IS_VALID_FORM = {
+	isValid: true,
+	value: '',
+	isReadyToSubmit: false
+};
+
+export const AUTHORIZATION = {
+	login: '',
+	isLogined: false
+};

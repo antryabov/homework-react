@@ -1,0 +1,13 @@
+.search-panel__search-form {
+	position: relative;
+	display: flex;
+	justify-content: start;
+	gap: 8px;
+}
+
+.auth-panel__auth-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	gap: 24px;
+}

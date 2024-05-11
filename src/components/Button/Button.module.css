@@ -13,3 +13,6 @@
 .button:hover {
 	background: rgb(150, 139, 247);
 }
+.auth-panel__auth-button {
+	width: 180px;
+}
