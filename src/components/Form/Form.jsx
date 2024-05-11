@@ -46,7 +46,7 @@ function Form({
 			loginedUser(value);
 			dispatchForm({ type: 'CLEAR' });
 		}
-	}, [isReadyToSubmit]);
+	}, [isReadyToSubmit, loginedUser, onSubmit, value]);
 
 	function searchInput(event) {
 		event.preventDefault();

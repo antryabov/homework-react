@@ -15,14 +15,18 @@ import { AUTHORIZATION } from './constants/constants';
 function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
 	const [users, setUsers] = useLocalStorage('users');
-	const [user, setUser] = useState(AUTHORIZATION);
+	const [userLogined, setUserLogined] = useState(AUTHORIZATION);
 
 	const addUsers = (user) => {
-		setUsers([...users, { login: user }]);
+		if (users.find((el) => el.login === user)) {
+			return;
+		} else {
+			setUsers([...users, { login: user }]);
+		}
 	};
 
 	const loginedUser = (value) => {
-		setUser({
+		setUserLogined({
 			isLogined: true,
 			login: JSON.parse(localStorage.getItem('users')).find(
 				(el) => el.login === value
@@ -31,7 +35,7 @@ function App() {
 	};
 
 	const logout = () => {
-		setUser(AUTHORIZATION);
+		setUserLogined(AUTHORIZATION);
 	};
 
 	const data = [
@@ -57,7 +61,7 @@ function App() {
 			<Header>
 				<img src="/bookmark.svg" alt="bookmark" />
 				<h1>{data[1].hiddenTitleForSEO}</h1>
-				<Navigation isValid={user} logout={logout} />
+				<Navigation isValid={userLogined} logout={logout} />
 			</Header>
 			<Main>
 				<SectionBlock className="main__search-panel">

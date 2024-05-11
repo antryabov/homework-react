@@ -1,4 +1,4 @@
-import { AUTHORIZATION, IS_VALID_FORM } from '../../constants/constants';
+import { IS_VALID_FORM } from '../../constants/constants';
 
 export function formReducer(state, action) {
 	switch (action.type) {
