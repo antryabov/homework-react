@@ -1,11 +1,16 @@
+import { useContext } from 'react';
 import styles from './Navigation.module.css';
+import { UserContext } from '../../contexts/user.context';
+import { AUTHORIZATION } from '../../constants/constants';
 
-function Navigation({ isValid, logout }) {
+function Navigation() {
+	const { userLogined, setUserLogined } = useContext(UserContext);
+
 	const onClick = () => {
-		logout();
+		setUserLogined(AUTHORIZATION);
 	};
 
-	if (isValid.isLogined) {
+	if (userLogined.isLogined) {
 		return (
 			<nav className={styles['header__nav']}>
 				<a href="#" className={styles['header__search-flims']}>
@@ -18,7 +23,7 @@ function Navigation({ isValid, logout }) {
 					<div className={styles['header__favorites-count']}>0</div>
 				</div>
 				<a href="#" className={styles['header__sign-in']}>
-					{isValid.login}
+					{userLogined.login}
 					<img src="/sign-in.svg" alt="sign-in icon" />
 				</a>
 				<a

@@ -1,9 +1,10 @@
 import styles from './Form.module.css';
 import Button from '../Button/Button';
-import { useEffect, useReducer, useRef } from 'react';
+import { useContext, useEffect, useReducer, useRef } from 'react';
 import Input from '../Input/Input';
 import { IS_VALID_FORM } from '../../constants/constants';
 import { formReducer } from './Form.state';
+import { UserContext } from '../../contexts/user.context';
 
 function Form({
 	name,
@@ -12,15 +13,13 @@ function Form({
 	classNameButton,
 	placeholder,
 	icon,
-	onSubmit,
-	loginedUser
+	onSubmit
 }) {
 	const [formState, dispatchForm] = useReducer(formReducer, IS_VALID_FORM);
-
+	const { setUserLogined } = useContext(UserContext);
 	const { isValid, value, isReadyToSubmit } = formState;
 	const buttonRef = useRef();
 	const inputRef = useRef();
-
 	const focusError = (isValid) => {
 		if (!isValid) {
 			inputRef.current.focus();
@@ -43,10 +42,13 @@ function Form({
 	useEffect(() => {
 		if (isReadyToSubmit) {
 			onSubmit(value);
-			loginedUser(value);
+			setUserLogined({
+				login: value,
+				isLogined: true
+			});
 			dispatchForm({ type: 'CLEAR' });
 		}
-	}, [isReadyToSubmit, loginedUser, onSubmit, value]);
+	}, [isReadyToSubmit, onSubmit, setUserLogined, value]);
 
 	function searchInput(event) {
 		event.preventDefault();

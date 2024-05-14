@@ -10,12 +10,12 @@ import Main from './layouts/Main/Main';
 import FilmList from './components/FilmList/FilmList';
 import { MOVIE_DATABASE } from './constants/constants';
 import { useLocalStorage } from './hooks/use-localstorage.hook';
-import { AUTHORIZATION } from './constants/constants';
+import { UserContextProvider } from './contexts/user.context';
 
 function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
 	const [users, setUsers] = useLocalStorage('users');
-	const [userLogined, setUserLogined] = useState(AUTHORIZATION);
+	/* 	const [userLogined, setUserLogined] = useState(AUTHORIZATION); */
 
 	const addUsers = (user) => {
 		if (users.find((el) => el.login === user)) {
@@ -25,7 +25,7 @@ function App() {
 		}
 	};
 
-	const loginedUser = (value) => {
+	/* 	const loginedUser = (value) => {
 		setUserLogined({
 			isLogined: true,
 			login: JSON.parse(localStorage.getItem('users')).find(
@@ -36,7 +36,7 @@ function App() {
 
 	const logout = () => {
 		setUserLogined(AUTHORIZATION);
-	};
+	}; */
 
 	const data = [
 		{
@@ -57,12 +57,13 @@ function App() {
 	];
 
 	return (
-		<>
+		<UserContextProvider>
 			<Header>
 				<img src="/bookmark.svg" alt="bookmark" />
 				<h1>{data[1].hiddenTitleForSEO}</h1>
-				<Navigation isValid={userLogined} logout={logout} />
+				<Navigation />
 			</Header>
+
 			<Main>
 				<SectionBlock className="main__search-panel">
 					<Headline className="search-panel__title">
@@ -95,14 +96,13 @@ function App() {
 						textButton={data[2].buttonAuth}
 						placeholder={data[2].placeholderAuth}
 						classNameButton="auth-panel__auth-button"
-						loginedUser={loginedUser}
 					/>
 				</SectionBlock>
 				<SectionBlock className="main__films">
 					<FilmList films={films} />
 				</SectionBlock>
 			</Main>
-		</>
+		</UserContextProvider>
 	);
 }
 
