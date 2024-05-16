@@ -1,4 +1,4 @@
-import './App.css';
+import styles from './App.module.css';
 import { useState } from 'react';
 import Headline from './components/Headline/Headline';
 import SearchText from './components/SearchText/SearchText';
@@ -8,48 +8,36 @@ import Navigation from './components/Navigation/Navigation';
 import SectionBlock from './components/SectionBlock/SectionBlock';
 import Main from './layouts/Main/Main';
 import FilmList from './components/FilmList/FilmList';
-
-const MOVIE_DATABASE = [
-	{
-		title: 'Shang Chi',
-		img: 'shang.jpeg',
-		raiting: '356',
-		id: 1
-	},
-	{
-		title: 'Black Chisas',
-		img: 'shang.jpeg',
-		raiting: '2',
-		id: 2
-	},
-	{
-		title: 'Shang Chi',
-		img: 'shang.jpeg',
-		raiting: '3356',
-		id: 1
-	},
-	{
-		title: 'Pokemon Chisas',
-		img: 'shang.jpeg',
-		raiting: '326',
-		id: 2
-	},
-	{
-		title: 'Avangers Chi',
-		img: 'shang.jpeg',
-		raiting: '1',
-		id: 1
-	},
-	{
-		title: 'Shang Chisas',
-		img: 'shang.jpeg',
-		raiting: '356',
-		id: 2
-	}
-];
+import { MOVIE_DATABASE } from './constants/constants';
+import { useLocalStorage } from './hooks/use-localstorage.hook';
+import { UserContextProvider } from './contexts/user.context';
 
 function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
+	const [users, setUsers] = useLocalStorage('users');
+	/* 	const [userLogined, setUserLogined] = useState(AUTHORIZATION); */
+
+	const addUsers = (user) => {
+		if (users.find((el) => el.login === user)) {
+			return;
+		} else {
+			setUsers([...users, { login: user }]);
+		}
+	};
+
+	/* 	const loginedUser = (value) => {
+		setUserLogined({
+			isLogined: true,
+			login: JSON.parse(localStorage.getItem('users')).find(
+				(el) => el.login === value
+			).login
+		});
+	};
+
+	const logout = () => {
+		setUserLogined(AUTHORIZATION);
+	}; */
+
 	const data = [
 		{
 			buttonSearch: 'Искать',
@@ -60,41 +48,61 @@ function App() {
 		},
 		{
 			hiddenTitleForSEO: 'Мир фильмов'
+		},
+		{
+			auth: 'Вход',
+			buttonAuth: 'Войти в профиль',
+			placeholderAuth: 'Ваше имя'
 		}
 	];
 
 	return (
-		<div className="app">
+		<UserContextProvider>
 			<Header>
 				<img src="/bookmark.svg" alt="bookmark" />
 				<h1>{data[1].hiddenTitleForSEO}</h1>
 				<Navigation />
 			</Header>
+
 			<Main>
 				<SectionBlock className="main__search-panel">
-					<Headline
-						text={data[0].search}
-						className="search-panel__title"
-					/>
-					<SearchText text={data[0].textSearch} />
+					<Headline className="search-panel__title">
+						{data[0].search}
+					</Headline>
+					<SearchText>{data[0].textSearch}</SearchText>
 					<Form
 						icon={
 							<img
-								className="search-panel__search-icon"
+								className={styles['search-panel__search-icon']}
 								src="/search.svg"
 								alt="icon search"
 							/>
 						}
+						onSubmit={addUsers}
+						name="search"
 						classNameFrom="search-panel__search-form"
 						textButton={data[0].buttonSearch}
 						placeholder={data[0].placeholderSearch}
+					/>
+				</SectionBlock>
+				<SectionBlock className="main__auth-panel">
+					<Headline className="auth-panel__title">
+						{data[2].auth}
+					</Headline>
+					<Form
+						name="login"
+						onSubmit={addUsers}
+						classNameFrom="auth-panel__auth-form"
+						textButton={data[2].buttonAuth}
+						placeholder={data[2].placeholderAuth}
+						classNameButton="auth-panel__auth-button"
 					/>
 				</SectionBlock>
 				<SectionBlock className="main__films">
 					<FilmList films={films} />
 				</SectionBlock>
 			</Main>
-		</div>
+		</UserContextProvider>
 	);
 }
 

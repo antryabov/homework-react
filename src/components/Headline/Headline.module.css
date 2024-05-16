@@ -6,3 +6,8 @@
 	line-height: 80px;
 	text-align: left;
 }
+
+.auth-panel__title {
+	font-size: 64px;
+	margin-bottom: 24px;
+}

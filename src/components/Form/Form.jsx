@@ -1,25 +1,81 @@
-import './Form.css';
+import styles from './Form.module.css';
 import Button from '../Button/Button';
+import { useContext, useEffect, useReducer, useRef } from 'react';
+import Input from '../Input/Input';
+import { IS_VALID_FORM } from '../../constants/constants';
+import { formReducer } from './Form.state';
+import { UserContext } from '../../contexts/user.context';
 
 function Form({
+	name,
 	textButton,
 	classNameFrom,
 	classNameButton,
 	placeholder,
-	icon
+	icon,
+	onSubmit
 }) {
+	const [formState, dispatchForm] = useReducer(formReducer, IS_VALID_FORM);
+	const { setUserLogined } = useContext(UserContext);
+	const { isValid, value, isReadyToSubmit } = formState;
+	const buttonRef = useRef();
+	const inputRef = useRef();
+	const focusError = (isValid) => {
+		if (!isValid) {
+			inputRef.current.focus();
+		}
+	};
+
+	useEffect(() => {
+		let timerId;
+		focusError(isValid);
+		if (!isValid) {
+			timerId = setTimeout(() => {
+				dispatchForm({ type: 'RESET_VALIDITY' });
+			}, 2500);
+		}
+		return () => {
+			clearTimeout(timerId);
+		};
+	}, [isValid]);
+
+	useEffect(() => {
+		if (isReadyToSubmit) {
+			onSubmit(value);
+			setUserLogined({
+				login: value,
+				isLogined: true
+			});
+			dispatchForm({ type: 'CLEAR' });
+		}
+	}, [isReadyToSubmit, onSubmit, setUserLogined, value]);
+
 	function searchInput(event) {
 		event.preventDefault();
-		const formData = new FormData(event.target);
-		const formProps = Object.fromEntries(formData);
-		console.log(formProps);
+		dispatchForm({ type: 'SUBMIT' });
 	}
 
+	const onChange = (event) => {
+		dispatchForm({ type: 'SET_VALUE', payload: event.target.value });
+	};
+
 	return (
-		<form className={classNameFrom} onSubmit={searchInput}>
+		<form className={styles[classNameFrom]} onSubmit={searchInput}>
 			{icon}
-			<input type="text" name="search" placeholder={placeholder} />
-			<Button text={textButton} className={classNameButton} />
+			<Input
+				ref={inputRef}
+				type="text"
+				name={name}
+				placeholder={placeholder}
+				value={value}
+				onChange={onChange}
+				isValid={isValid}
+			/>
+			<Button
+				ref={buttonRef}
+				text={textButton}
+				className={classNameButton}
+			/>
 		</form>
 	);
 }

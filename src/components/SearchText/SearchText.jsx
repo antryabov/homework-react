@@ -1,7 +1,7 @@
-import './SearchText.css';
+import styles from './SearchText.module.css';
 
-function SearchText({ text }) {
-	return <p className="search-panel__search-text">{text}</p>;
+function SearchText({ children }) {
+	return <p className={styles['search-panel__search-text']}>{children}</p>;
 }
 
 export default SearchText;
