@@ -12,11 +12,11 @@ function Navigation() {
 
 	if (userLogined.isLogined) {
 		return (
-			<nav className={styles['header__nav']}>
+			<nav className={styles.header__nav}>
 				<a href="#" className={styles['header__search-flims']}>
 					Поиск фильмов
 				</a>
-				<div className={styles['header__favorites']}>
+				<div className={styles.header__favorites}>
 					<a href="#" className={styles['header__favorites-link']}>
 						Мои фильмы
 					</a>
@@ -38,11 +38,11 @@ function Navigation() {
 	}
 
 	return (
-		<nav className={styles['header__nav']}>
+		<nav className={styles.header__nav}>
 			<a href="#" className={styles['header__search-flims']}>
 				Поиск фильмов
 			</a>
-			<div className={styles['header__favorites']}>
+			<div className={styles.header__favorites}>
 				<a href="#" className={styles['header__favorites-link']}>
 					Мои фильмы
 				</a>

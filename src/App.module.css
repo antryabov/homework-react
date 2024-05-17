@@ -6,3 +6,34 @@ h1 {
 	left: 16px;
 	top: 19px;
 }
+.search-panel__title {
+	margin-bottom: 0px;
+	color: rgb(235, 238, 245);
+	font-size: 64px;
+	font-weight: 600;
+	line-height: 80px;
+	text-align: left;
+}
+
+.auth-panel__title {
+	font-size: 64px;
+	margin-bottom: 24px;
+}
+.main__auth-panel {
+	width: 384px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 80px;
+}
+.main__search-panel {
+	width: 588px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 80px;
+}
+
+.main__films {
+	display: flex;
+	gap: 24px;
+	flex-wrap: wrap;
+}

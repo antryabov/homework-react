@@ -6,7 +6,7 @@ const Button = forwardRef(function Button({ text, onClick, className }, ref) {
 	return (
 		<button
 			ref={ref}
-			className={classNames(styles['button'], styles[className])}
+			className={classNames(styles.button, styles[className])}
 			onClick={onClick}
 		>
 			{text}
