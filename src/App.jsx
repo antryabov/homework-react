@@ -15,7 +15,6 @@ import { UserContextProvider } from './contexts/user.context';
 function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
 	const [users, setUsers] = useLocalStorage('users');
-	/* 	const [userLogined, setUserLogined] = useState(AUTHORIZATION); */
 
 	const addUsers = (user) => {
 		if (users.find((el) => el.login === user)) {
@@ -24,19 +23,6 @@ function App() {
 			setUsers([...users, { login: user }]);
 		}
 	};
-
-	/* 	const loginedUser = (value) => {
-		setUserLogined({
-			isLogined: true,
-			login: JSON.parse(localStorage.getItem('users')).find(
-				(el) => el.login === value
-			).login
-		});
-	};
-
-	const logout = () => {
-		setUserLogined(AUTHORIZATION);
-	}; */
 
 	return (
 		<UserContextProvider>
