@@ -35,3 +35,21 @@ export const AUTHORIZATION = {
 	login: '',
 	isLogined: false
 };
+
+export const DATA = [
+	{
+		buttonSearch: 'Искать',
+		search: 'Поиск',
+		textSearch:
+			'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.',
+		placeholderSearch: 'Введите название'
+	},
+	{
+		hiddenTitleForSEO: 'Мир фильмов'
+	},
+	{
+		auth: 'Вход',
+		buttonAuth: 'Войти в профиль',
+		placeholderAuth: 'Ваше имя'
+	}
+];

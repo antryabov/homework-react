@@ -8,14 +8,13 @@ import Navigation from './components/Navigation/Navigation';
 import SectionBlock from './components/SectionBlock/SectionBlock';
 import Main from './layouts/Main/Main';
 import FilmList from './components/FilmList/FilmList';
-import { MOVIE_DATABASE } from './constants/constants';
+import { MOVIE_DATABASE, DATA } from './constants/constants';
 import { useLocalStorage } from './hooks/use-localstorage.hook';
 import { UserContextProvider } from './contexts/user.context';
 
 function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
 	const [users, setUsers] = useLocalStorage('users');
-	/* 	const [userLogined, setUserLogined] = useState(AUTHORIZATION); */
 
 	const addUsers = (user) => {
 		if (users.find((el) => el.login === user)) {
@@ -25,51 +24,20 @@ function App() {
 		}
 	};
 
-	/* 	const loginedUser = (value) => {
-		setUserLogined({
-			isLogined: true,
-			login: JSON.parse(localStorage.getItem('users')).find(
-				(el) => el.login === value
-			).login
-		});
-	};
-
-	const logout = () => {
-		setUserLogined(AUTHORIZATION);
-	}; */
-
-	const data = [
-		{
-			buttonSearch: 'Искать',
-			search: 'Поиск',
-			textSearch:
-				'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.',
-			placeholderSearch: 'Введите название'
-		},
-		{
-			hiddenTitleForSEO: 'Мир фильмов'
-		},
-		{
-			auth: 'Вход',
-			buttonAuth: 'Войти в профиль',
-			placeholderAuth: 'Ваше имя'
-		}
-	];
-
 	return (
 		<UserContextProvider>
 			<Header>
 				<img src="/bookmark.svg" alt="bookmark" />
-				<h1>{data[1].hiddenTitleForSEO}</h1>
+				<h1>{DATA[1].hiddenTitleForSEO}</h1>
 				<Navigation />
 			</Header>
 
 			<Main>
-				<SectionBlock className="main__search-panel">
-					<Headline className="search-panel__title">
-						{data[0].search}
+				<SectionBlock className={styles['main__search-panel']}>
+					<Headline className={styles['search-panel__title']}>
+						{DATA[0].search}
 					</Headline>
-					<SearchText>{data[0].textSearch}</SearchText>
+					<SearchText>{DATA[0].textSearch}</SearchText>
 					<Form
 						icon={
 							<img
@@ -81,24 +49,24 @@ function App() {
 						onSubmit={addUsers}
 						name="search"
 						classNameFrom="search-panel__search-form"
-						textButton={data[0].buttonSearch}
-						placeholder={data[0].placeholderSearch}
+						textButton={DATA[0].buttonSearch}
+						placeholder={DATA[0].placeholderSearch}
 					/>
 				</SectionBlock>
-				<SectionBlock className="main__auth-panel">
-					<Headline className="auth-panel__title">
-						{data[2].auth}
+				<SectionBlock className={styles['main__auth-panel']}>
+					<Headline className={styles['auth-panel__title']}>
+						{DATA[2].auth}
 					</Headline>
 					<Form
 						name="login"
 						onSubmit={addUsers}
 						classNameFrom="auth-panel__auth-form"
-						textButton={data[2].buttonAuth}
-						placeholder={data[2].placeholderAuth}
+						textButton={DATA[2].buttonAuth}
+						placeholder={DATA[2].placeholderAuth}
 						classNameButton="auth-panel__auth-button"
 					/>
 				</SectionBlock>
-				<SectionBlock className="main__films">
+				<SectionBlock className={styles.main__films}>
 					<FilmList films={films} />
 				</SectionBlock>
 			</Main>
