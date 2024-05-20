@@ -11,11 +11,9 @@ const Input = forwardRef(function input(
 			ref={ref}
 			type={type}
 			name={name}
-			className={classNames(
-				classNames(styles.input, styles[className], {
-					[styles.invalid]: !isValid
-				})
-			)}
+			className={classNames(styles.input, styles[className], {
+				[styles.invalid]: !isValid
+			})}
 			placeholder={placeholder}
 			{...props}
 		/>
