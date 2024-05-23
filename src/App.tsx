@@ -16,7 +16,7 @@ function App() {
 	const [films, setFilms] = useState(MOVIE_DATABASE);
 	const [users, setUsers] = useLocalStorage('users');
 
-	const addUsers = (user) => {
+	const addUsers = (user: string): void => {
 		if (users.find((el) => el.login === user)) {
 			return;
 		} else {
@@ -33,37 +33,37 @@ function App() {
 			</Header>
 
 			<Main>
-				<SectionBlock className={styles['main__search-panel']}>
-					<Headline className={styles['search-panel__title']}>
+				<SectionBlock className={styles.main__searchPanel}>
+					<Headline className={styles.searchPanel__title}>
 						{DATA[0].search}
 					</Headline>
 					<SearchText>{DATA[0].textSearch}</SearchText>
 					<Form
 						icon={
 							<img
-								className={styles['search-panel__search-icon']}
+								className={styles.searchPanel__icon}
 								src="/search.svg"
 								alt="icon search"
 							/>
 						}
-						onSubmit={addUsers}
+						onSubmitForm={addUsers}
 						name="search"
-						classNameFrom="search-panel__search-form"
+						classNameFrom="searchPanel__form"
 						textButton={DATA[0].buttonSearch}
 						placeholder={DATA[0].placeholderSearch}
 					/>
 				</SectionBlock>
-				<SectionBlock className={styles['main__auth-panel']}>
-					<Headline className={styles['auth-panel__title']}>
+				<SectionBlock className={styles.main__authPanel}>
+					<Headline className={styles.authPanel__title}>
 						{DATA[2].auth}
 					</Headline>
 					<Form
 						name="login"
-						onSubmit={addUsers}
-						classNameFrom="auth-panel__auth-form"
+						onSubmitForm={addUsers}
+						classNameFrom="authPanel__form"
 						textButton={DATA[2].buttonAuth}
 						placeholder={DATA[2].placeholderAuth}
-						classNameButton="auth-panel__auth-button"
+						classNameButton="authPanel__button"
 					/>
 				</SectionBlock>
 				<SectionBlock className={styles.main__films}>

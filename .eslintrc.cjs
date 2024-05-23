@@ -19,6 +19,7 @@ module.exports = {
 		'comma-dangle': ['error', 'never'],
 		quotes: ['error', 'single'],
 		'react/prop-types': 'off',
-		indent: ['error', 'tab', { SwitchCase: 1 }]
+		indent: ['error', 'tab', { SwitchCase: 1 }],
+		'no-mixed-spaces-and-tabs': 0
 	}
 };

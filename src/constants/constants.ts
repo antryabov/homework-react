@@ -1,4 +1,26 @@
-export const MOVIE_DATABASE = [
+export interface Movie {
+	title: string;
+	img?: string;
+	raiting?: string;
+	id?: number;
+}
+
+export interface ValidityForm {
+	isValid: boolean | number;
+	value: string;
+	isReadyToSubmit: boolean | number;
+}
+
+export interface Authorization {
+	login: string;
+	isLogined: boolean;
+}
+
+interface IData {
+	[key: string]: string;
+}
+
+export const MOVIE_DATABASE: Movie[] = [
 	{
 		title: 'Shang Chi',
 		img: 'shang.jpeg',
@@ -25,18 +47,18 @@ export const MOVIE_DATABASE = [
 	}
 ];
 
-export const IS_VALID_FORM = {
+export const IS_VALID_FORM: ValidityForm = {
 	isValid: true,
 	value: '',
 	isReadyToSubmit: false
 };
 
-export const AUTHORIZATION = {
+export const AUTHORIZATION: Authorization = {
 	login: '',
 	isLogined: false
 };
 
-export const DATA = [
+export const DATA: Array<IData> = [
 	{
 		buttonSearch: 'Искать',
 		search: 'Поиск',

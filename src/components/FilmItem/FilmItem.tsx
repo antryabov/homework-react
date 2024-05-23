@@ -1,6 +1,7 @@
 import styles from './FilmItem.module.css';
+import { FilmItemProps } from './FilmItem.props';
 
-function FilmItem({ title, img, raiting }) {
+function FilmItem({ title, img, raiting }: FilmItemProps) {
 	return (
 		<>
 			<div className={styles.films__raiting}>

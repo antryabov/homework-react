@@ -1,12 +1,12 @@
 h1 {
 	display: none;
 }
-.search-panel__search-icon {
+.searchPanel__icon {
 	position: absolute;
 	left: 16px;
 	top: 19px;
 }
-.search-panel__title {
+.searchPanel__title {
 	margin-bottom: 0px;
 	color: rgb(235, 238, 245);
 	font-size: 64px;
@@ -15,17 +15,17 @@ h1 {
 	text-align: left;
 }
 
-.auth-panel__title {
+.authPanel__title {
 	font-size: 64px;
 	margin-bottom: 24px;
 }
-.main__auth-panel {
+.main__authPanel {
 	width: 384px;
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 80px;
 }
-.main__search-panel {
+.main__searchPanel {
 	width: 588px;
 	display: flex;
 	flex-direction: column;

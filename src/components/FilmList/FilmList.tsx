@@ -1,8 +1,9 @@
 import CardButton from '../CardButton/CardButton';
 import './FilmList.css';
 import FilmItem from '../FilmItem/FilmItem';
+import { FilmListProps } from './FilmList.props';
 
-function FilmList({ films }) {
+function FilmList({ films }: FilmListProps) {
 	return (
 		<>
 			{films.map((el) => (

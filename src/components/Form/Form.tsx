@@ -1,10 +1,18 @@
 import styles from './Form.module.css';
 import Button from '../Button/Button';
-import { useContext, useEffect, useReducer, useRef } from 'react';
+import {
+	ChangeEvent,
+	FormEvent,
+	useContext,
+	useEffect,
+	useReducer,
+	useRef
+} from 'react';
 import Input from '../Input/Input';
 import { IS_VALID_FORM } from '../../constants/constants';
-import { formReducer } from './Form.state';
+import { ActionType, formReducer } from './Form.state';
 import { UserContext } from '../../contexts/user.context';
+import { FormProps } from './Form.props';
 
 function Form({
 	name,
@@ -13,25 +21,33 @@ function Form({
 	classNameButton,
 	placeholder,
 	icon,
-	onSubmit
-}) {
+	onSubmitForm
+}: FormProps) {
 	const [formState, dispatchForm] = useReducer(formReducer, IS_VALID_FORM);
+
 	const { setUserLogined } = useContext(UserContext);
+
 	const { isValid, value, isReadyToSubmit } = formState;
-	const buttonRef = useRef();
-	const inputRef = useRef();
-	const focusError = (isValid) => {
+
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const focusError = (isValid: boolean) => {
 		if (!isValid) {
-			inputRef.current.focus();
+			inputRef.current?.focus();
 		}
 	};
 
 	useEffect(() => {
-		let timerId;
-		focusError(isValid);
+		let timerId: number | undefined;
+
+		if (typeof isValid === 'boolean') {
+			focusError(isValid);
+		}
+
 		if (!isValid) {
 			timerId = setTimeout(() => {
-				dispatchForm({ type: 'RESET_VALIDITY' });
+				dispatchForm({ type: ActionType.Reset });
 			}, 2500);
 		}
 		return () => {
@@ -41,22 +57,26 @@ function Form({
 
 	useEffect(() => {
 		if (isReadyToSubmit) {
-			onSubmit(value);
+			onSubmitForm(value);
+
 			setUserLogined({
 				login: value,
 				isLogined: true
 			});
-			dispatchForm({ type: 'CLEAR' });
+			dispatchForm({ type: ActionType.Clear });
 		}
-	}, [isReadyToSubmit, onSubmit, setUserLogined, value]);
+	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value]);
 
-	function searchInput(event) {
+	function searchInput(event: FormEvent) {
 		event.preventDefault();
-		dispatchForm({ type: 'SUBMIT' });
+		dispatchForm({ type: ActionType.Submit });
 	}
 
-	const onChange = (event) => {
-		dispatchForm({ type: 'SET_VALUE', payload: event.target.value });
+	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+		dispatchForm({
+			type: ActionType.SetValue,
+			payload: event.target.value
+		});
 	};
 
 	return (
@@ -71,11 +91,9 @@ function Form({
 				onChange={onChange}
 				isValid={isValid}
 			/>
-			<Button
-				ref={buttonRef}
-				text={textButton}
-				className={classNameButton}
-			/>
+			<Button ref={buttonRef} className={classNameButton}>
+				{textButton}
+			</Button>
 		</form>
 	);
 }

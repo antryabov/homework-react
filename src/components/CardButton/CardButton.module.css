@@ -1,4 +1,4 @@
-.films__card-button {
+.films__cardButton {
 	position: relative;
 	border-radius: 12px;
 	background: rgba(32, 40, 62, 0.8);
@@ -8,6 +8,6 @@
 	cursor: pointer;
 }
 
-.films__card-button:hover {
+.films__cardButton:hover {
 	background: rgba(66, 78, 110, 0.8);
 }
