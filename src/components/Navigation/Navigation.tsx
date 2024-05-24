@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import styles from './Navigation.module.css';
 import { UserContext } from '../../contexts/user.context';
 import { AUTHORIZATION } from '../../constants/constants';
+import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 
 function Navigation() {
 	const { login, isLogined, setUserLogined } = useContext(UserContext);
@@ -13,33 +15,84 @@ function Navigation() {
 	if (isLogined) {
 		return (
 			<nav className={styles.header__nav}>
-				<a href="#">Поиск фильмов</a>
+				<NavLink
+					to="/"
+					className={({ isActive }) =>
+						classNames({
+							[styles.active]: isActive
+						})
+					}
+				>
+					Поиск фильмов
+				</NavLink>
 				<div className={styles.header__favorites}>
-					<a href="#">Мои фильмы</a>
+					<NavLink
+						to="/Favorites"
+						className={({ isActive }) =>
+							classNames({
+								[styles.active]: isActive
+							})
+						}
+					>
+						Мои фильмы
+					</NavLink>
 					<div className={styles.header__favoritesCount}>0</div>
 				</div>
-				<a href="#" className={styles.header__signIn}>
+				<div className={styles.header__signIn}>
 					{login}
 					<img src="/sign-in.svg" alt="sign-in icon" />
-				</a>
-				<a href="#" onClick={onClick} className={styles.header__signIn}>
+				</div>
+				<NavLink
+					onClick={onClick}
+					to="/"
+					className={({ isActive }) =>
+						classNames(styles.header__signIn, {
+							[styles.active]: isActive
+						})
+					}
+				>
 					Выйти
-				</a>
+					<img src="/sign-in.png" alt="sign-in icon" />
+				</NavLink>
 			</nav>
 		);
 	}
 
 	return (
 		<nav className={styles.header__nav}>
-			<a href="#">Поиск фильмов</a>
+			<NavLink
+				to="/"
+				className={({ isActive }) =>
+					classNames({
+						[styles.active]: isActive
+					})
+				}
+			>
+				Поиск фильмов
+			</NavLink>
 			<div className={styles.header__favorites}>
-				<a href="#">Мои фильмы</a>
-				<div className={styles.header__favoritesCount}>0</div>
+				<NavLink
+					to="/Favorites"
+					className={({ isActive }) =>
+						classNames({
+							[styles.active]: isActive
+						})
+					}
+				>
+					Мои фильмы
+				</NavLink>
 			</div>
-			<a href="#" className={styles.header__signIn}>
+			<NavLink
+				to="/Login"
+				className={({ isActive }) =>
+					classNames(styles.header__signIn, {
+						[styles.active]: isActive
+					})
+				}
+			>
 				Войти
 				<img src="/sign-in.png" alt="sign-in icon" />
-			</a>
+			</NavLink>
 		</nav>
 	);
 }

@@ -1,12 +1,12 @@
 import styles from './FilmItem.module.css';
 import { FilmItemProps } from './FilmItem.props';
 
-function FilmItem({ title, img, raiting }: FilmItemProps) {
+function FilmItem({ title, img, rating }: FilmItemProps) {
 	return (
 		<>
-			<div className={styles.films__raiting}>
+			<div className={styles.films__rating}>
 				<img src="/star.svg" alt="star icon" />
-				{raiting}
+				{rating}
 			</div>
 			<img className={styles.films__poster} src={img} alt={title} />
 			<div className={styles.films__info}>

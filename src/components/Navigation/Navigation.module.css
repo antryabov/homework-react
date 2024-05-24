@@ -42,3 +42,7 @@
 	align-items: center;
 	gap: 14px;
 }
+
+.active {
+	color: rgb(255, 255, 255);
+}

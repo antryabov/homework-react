@@ -1,0 +1,10 @@
+.authPanel__title {
+	font-size: 64px;
+	margin-bottom: 24px;
+}
+.main__authPanel {
+	width: 384px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 80px;
+}

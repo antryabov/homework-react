@@ -1,0 +1,13 @@
+.searchPanel__form {
+	position: relative;
+	display: flex;
+	justify-content: start;
+	gap: 8px;
+}
+
+.authPanel__form {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	gap: 24px;
+}

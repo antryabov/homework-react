@@ -1,7 +1,7 @@
 export interface Movie {
 	title: string;
 	img?: string;
-	raiting?: string;
+	rating?: string;
 	id?: number;
 }
 
@@ -24,25 +24,25 @@ export const MOVIE_DATABASE: Movie[] = [
 	{
 		title: 'Shang Chi',
 		img: 'shang.jpeg',
-		raiting: '356',
+		rating: '356',
 		id: 1
 	},
 	{
 		title: 'Black Chisas',
 		img: 'shang.jpeg',
-		raiting: '2',
+		rating: '2',
 		id: 2
 	},
 	{
 		title: 'Shang Chi',
 		img: 'shang.jpeg',
-		raiting: '3356',
+		rating: '3356',
 		id: 3
 	},
 	{
 		title: 'Pokemon Chisas',
 		img: 'shang.jpeg',
-		raiting: '326',
+		rating: '326',
 		id: 4
 	}
 ];
@@ -73,5 +73,11 @@ export const DATA: Array<IData> = [
 		auth: 'Вход',
 		buttonAuth: 'Войти в профиль',
 		placeholderAuth: 'Ваше имя'
+	},
+	{
+		favoritesTitle: 'Избранное'
+	},
+	{
+		film: 'Avengers: Endgame'
 	}
 ];

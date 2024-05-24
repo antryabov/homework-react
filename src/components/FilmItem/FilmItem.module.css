@@ -1,4 +1,4 @@
-.films__raiting {
+.films__rating {
 	top: 16px;
 	left: 16px;
 	position: absolute;
@@ -16,7 +16,7 @@
 	line-height: 24px;
 }
 
-.films__raiting > img {
+.films__rating > img {
 	width: 13px;
 	height: 13px;
 }
