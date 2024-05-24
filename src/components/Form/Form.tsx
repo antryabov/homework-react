@@ -13,7 +13,6 @@ import { IS_VALID_FORM } from '../../constants/constants';
 import { ActionType, formReducer } from './Form.state';
 import { UserContext } from '../../contexts/user.context';
 import { FormProps } from './Form.props';
-/* import { Link } from 'react-router-dom'; */
 
 function Form({
 	name,
@@ -21,6 +20,7 @@ function Form({
 	classNameFrom,
 	classNameButton,
 	placeholder,
+	icon,
 	onSubmitForm
 }: FormProps) {
 	const [formState, dispatchForm] = useReducer(formReducer, IS_VALID_FORM);
@@ -57,15 +57,19 @@ function Form({
 
 	useEffect(() => {
 		if (isReadyToSubmit) {
+			if (name === 'login') {
+				onSubmitForm(value);
+
+				setUserLogined({
+					login: value,
+					isLogined: true
+				});
+			}
 			onSubmitForm(value);
 
-			setUserLogined({
-				login: value,
-				isLogined: true
-			});
 			dispatchForm({ type: ActionType.Clear });
 		}
-	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value]);
+	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value, name]);
 
 	function searchInput(event: FormEvent) {
 		event.preventDefault();
@@ -81,6 +85,7 @@ function Form({
 
 	return (
 		<form className={styles[classNameFrom]} onSubmit={searchInput}>
+			{icon}
 			<Input
 				ref={inputRef}
 				type="text"

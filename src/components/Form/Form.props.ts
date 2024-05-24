@@ -1,9 +1,10 @@
-import { FormHTMLAttributes } from 'react';
+import { FormHTMLAttributes, ReactElement } from 'react';
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 	textButton: string;
 	classNameFrom: string;
 	classNameButton?: string | undefined;
 	placeholder: string;
-	onSubmitForm: (user: string) => void;
+	icon?: ReactElement;
+	onSubmitForm: (params: string) => void;
 }
