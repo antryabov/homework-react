@@ -29,8 +29,8 @@ function Form({
 
 	const { isValid, value, isReadyToSubmit } = formState;
 
-	const buttonRef = useRef<HTMLButtonElement>(null);
-	const inputRef = useRef<HTMLInputElement>(null);
+	const buttonRef = useRef<HTMLButtonElement | null>(null);
+	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const focusError = (isValid: boolean) => {
 		if (!isValid) {
