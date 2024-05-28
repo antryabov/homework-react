@@ -22,7 +22,7 @@
 	gap: 8px;
 }
 
-.header__favorites-count {
+.header__favoritesCount {
 	width: 24px;
 	height: 24px;
 	left: 136px;
@@ -37,8 +37,12 @@
 	align-items: center;
 }
 
-.header__sign-in {
+.header__signIn {
 	display: flex;
 	align-items: center;
 	gap: 14px;
+}
+
+.active {
+	color: rgb(255, 255, 255);
 }

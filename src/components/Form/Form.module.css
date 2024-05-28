@@ -1,11 +1,11 @@
-.search-panel__search-form {
+.searchPanel__form {
 	position: relative;
 	display: flex;
 	justify-content: start;
 	gap: 8px;
 }
 
-.auth-panel__auth-form {
+.authPanel__form {
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
