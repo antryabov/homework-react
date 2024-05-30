@@ -15,17 +15,16 @@ function Login() {
 			setUsers([...users, { login: user }]);
 		}
 	};
+
 	return (
 		<SectionBlock className={styles.main__authPanel}>
-			<Headline className={styles.authPanel__title}>
-				{DATA[2].auth}
-			</Headline>
+			<Headline className={styles.authPanel__title}>{DATA.AUTH}</Headline>
 			<Form
 				name="login"
 				onSubmitForm={addUsers}
 				classNameFrom="authPanel__form"
-				textButton={DATA[2].buttonAuth}
-				placeholder={DATA[2].placeholderAuth}
+				textButton={DATA.BUTTON_AUTH}
+				placeholder={DATA.PLACEHOLDER_AUTH}
 				classNameButton="authPanel__button"
 			/>
 		</SectionBlock>

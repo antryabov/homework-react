@@ -1,0 +1,15 @@
+.notFound__title {
+	margin-bottom: 0px;
+	color: rgb(235, 238, 245);
+	font-size: 64px;
+	font-weight: 600;
+	line-height: 80px;
+	text-align: left;
+}
+
+.notFound__text {
+	color: rgb(142, 149, 169);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}

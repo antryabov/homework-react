@@ -1,19 +1,27 @@
 import styles from './Movie.module.css';
 import SectionBlock from '../../components/SectionBlock/SectionBlock';
 import Headline from '../../components/Headline/Headline';
-import { DATA } from '../../constants/constants';
-import { useParams } from 'react-router-dom';
+
+import { Await, useLoaderData } from 'react-router-dom';
+import { filmCard } from '../../interfaces/movie.interface';
+import { Suspense } from 'react';
+import Preloader from '../Preloader/Preloader';
 
 function Movie() {
-	const { id } = useParams();
+	const data = useLoaderData() as { data: filmCard };
 
 	return (
-		<SectionBlock className={styles.main__Movie}>
-			<Headline className={styles.favorites__Movie}>
-				{DATA[4].film}
-			</Headline>
-			<div> - айдишник фильма {id}</div>
-		</SectionBlock>
+		<Suspense fallback={<Preloader />}>
+			<Await resolve={data.data}>
+				{({ data }: { data: filmCard }) => (
+					<SectionBlock className={styles.main__Movie}>
+						<Headline className={styles.favorites__Movie}>
+							{data.Title}
+						</Headline>
+					</SectionBlock>
+				)}
+			</Await>
+		</Suspense>
 	);
 }
 

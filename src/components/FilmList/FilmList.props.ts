@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
-import { Movie } from '../../constants/constants';
+import { Search } from '../../interfaces/movie.interface';
 
 export interface FilmListProps extends HTMLAttributes<HTMLElement> {
-	films: Movie[];
+	films: Search[];
 }

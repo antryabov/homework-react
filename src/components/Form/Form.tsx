@@ -10,6 +10,7 @@ import {
 } from 'react';
 import Input from '../Input/Input';
 import { IS_VALID_FORM } from '../../constants/constants';
+
 import { ActionType, formReducer } from './Form.state';
 import { UserContext } from '../../contexts/user.context';
 import { FormProps } from './Form.props';
@@ -47,7 +48,7 @@ function Form({
 
 		if (!isValid) {
 			timerId = setTimeout(() => {
-				dispatchForm({ type: ActionType.Reset });
+				dispatchForm({ type: ActionType.RESET });
 			}, 2500);
 		}
 		return () => {
@@ -67,18 +68,18 @@ function Form({
 			}
 			onSubmitForm(value);
 
-			dispatchForm({ type: ActionType.Clear });
+			dispatchForm({ type: ActionType.CLEAR });
 		}
 	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value, name]);
 
 	function searchInput(event: FormEvent) {
 		event.preventDefault();
-		dispatchForm({ type: ActionType.Submit });
+		dispatchForm({ type: ActionType.SUBMIT });
 	}
 
 	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
 		dispatchForm({
-			type: ActionType.SetValue,
+			type: ActionType.SET_VALUE,
 			payload: event.target.value
 		});
 	};

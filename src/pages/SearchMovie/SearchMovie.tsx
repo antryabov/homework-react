@@ -1,26 +1,50 @@
-import { useState } from 'react';
-import { MOVIE_DATABASE, DATA } from '../../constants/constants';
+import { useCallback, useEffect, useState } from 'react';
+import { DATA } from '../../constants/constants';
 import SectionBlock from '../../components/SectionBlock/SectionBlock';
 import Headline from '../../components/Headline/Headline';
 import SearchText from '../../components/SearchText/SearchText';
 import FilmList from '../../components/FilmList/FilmList';
 import styles from './SearchMovie.module.css';
 import Form from '../../components/Form/Form';
+import axios, { AxiosError } from 'axios';
+import { PREFIX } from '../../helpers/API';
+import { Search, Movies } from '../../interfaces/movie.interface';
 
 function SearchMovie() {
-	const [films, setFilms] = useState(MOVIE_DATABASE); // Для вывода фильмов на главной странице
+	const [films, setFilms] = useState<Search[]>([]);
+	const [searchMovie, setSearchMovie] = useState<string | undefined>('all');
+	const [error, setError] = useState<string | undefined>();
 
-	const addFilms = (film: string): void => {
-		console.log('Нашел фильм - ', film); // Поиск фильм (заглушка)
+	const searchFilm = useCallback((film: string): void => {
+		setSearchMovie(film);
+	}, []);
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const getFilms = async () => {
+		try {
+			const { data } = await axios.get<Movies>(`${PREFIX}${searchMovie}`);
+			setFilms(data.Search);
+		} catch (error) {
+			console.error(error);
+			if (error instanceof AxiosError) {
+				setError(error.message);
+			}
+
+			return;
+		}
 	};
+
+	useEffect(() => {
+		getFilms();
+	}, [searchFilm, getFilms]);
 
 	return (
 		<>
 			<SectionBlock className={styles.main__searchPanel}>
 				<Headline className={styles.searchPanel__title}>
-					{DATA[0].search}
+					{DATA.SEARCH}
 				</Headline>
-				<SearchText>{DATA[0].textSearch}</SearchText>
+				<SearchText>{DATA.TEXT_SEARCH}</SearchText>
 				<Form
 					icon={
 						<img
@@ -31,12 +55,13 @@ function SearchMovie() {
 					}
 					name="search"
 					classNameFrom="searchPanel__form"
-					textButton={DATA[0].buttonSearch}
-					placeholder={DATA[0].placeholderSearch}
-					onSubmitForm={addFilms}
+					textButton={DATA.BUTTON_SEARCH}
+					placeholder={DATA.PLACEHOLDER_SEARCH}
+					onSubmitForm={searchFilm}
 				/>
 			</SectionBlock>
 			<SectionBlock className={styles.main__films}>
+				{error && <>{error}</>}
 				<FilmList films={films} />
 			</SectionBlock>
 		</>
