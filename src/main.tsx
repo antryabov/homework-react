@@ -11,6 +11,7 @@ import Favorites from './pages/Favorites/Favorites.tsx';
 import { PREFIX_WITH_ID } from './helpers/API.ts';
 import axios from 'axios';
 import ErrorPage from './pages/Error/ErrorPage.tsx';
+import { RequestAuth } from './helpers/RequestAuth.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				errorElement: <NotFound />,
-				element: <SearchMovie />
+				element: (
+					<RequestAuth>
+						<SearchMovie />
+					</RequestAuth>
+				)
 			},
 			{
 				path: '/login',
@@ -28,7 +33,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/movie/:id',
-				element: <Movie />,
+				element: (
+					<RequestAuth>
+						<Movie />
+					</RequestAuth>
+				),
 				errorElement: <ErrorPage />,
 				loader: async ({ params }) => {
 					return defer({
@@ -43,7 +52,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/favorites',
-				element: <Favorites />
+				element: (
+					<RequestAuth>
+						<Favorites />
+					</RequestAuth>
+				)
 			}
 		]
 	},

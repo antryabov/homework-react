@@ -44,7 +44,7 @@ function Navigation() {
 				</div>
 				<NavLink
 					onClick={onClick}
-					to="/"
+					to="/login"
 					className={({ isActive }) =>
 						classNames(styles.header__signIn, {
 							[styles.active]: isActive
