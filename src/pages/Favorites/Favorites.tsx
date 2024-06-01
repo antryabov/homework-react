@@ -8,7 +8,7 @@ function Favorites() {
 	return (
 		<SectionBlock className={styles.main__favorites}>
 			<Headline className={styles.favorites__title}>
-				{DATA[3].favoritesTitle}
+				{DATA.FAVORITES_TITLE}
 			</Headline>
 		</SectionBlock>
 	);

@@ -44,7 +44,7 @@ function Navigation() {
 				</div>
 				<NavLink
 					onClick={onClick}
-					to="/"
+					to="/login"
 					className={({ isActive }) =>
 						classNames(styles.header__signIn, {
 							[styles.active]: isActive
@@ -60,28 +60,6 @@ function Navigation() {
 
 	return (
 		<nav className={styles.header__nav}>
-			<NavLink
-				to="/"
-				className={({ isActive }) =>
-					classNames({
-						[styles.active]: isActive
-					})
-				}
-			>
-				Поиск фильмов
-			</NavLink>
-			<div className={styles.header__favorites}>
-				<NavLink
-					to="/Favorites"
-					className={({ isActive }) =>
-						classNames({
-							[styles.active]: isActive
-						})
-					}
-				>
-					Мои фильмы
-				</NavLink>
-			</div>
 			<NavLink
 				to="/Login"
 				className={({ isActive }) =>

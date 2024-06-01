@@ -10,7 +10,7 @@ function Layout() {
 		<UserContextProvider>
 			<Header>
 				<img src="/bookmark.svg" alt="bookmark" />
-				<h1>{DATA[1].hiddenTitleForSEO}</h1>
+				<h1>{DATA.HIDDEN_TITLE}</h1>
 				<Navigation />
 			</Header>
 			<Main>

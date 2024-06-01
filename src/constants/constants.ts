@@ -1,10 +1,3 @@
-export interface Movie {
-	title: string;
-	img?: string;
-	rating?: string;
-	id?: number;
-}
-
 export interface ValidityForm {
 	isValid: boolean | number;
 	value: string;
@@ -15,37 +8,6 @@ export interface Authorization {
 	login: string;
 	isLogined: boolean;
 }
-
-interface IData {
-	[key: string]: string;
-}
-
-export const MOVIE_DATABASE: Movie[] = [
-	{
-		title: 'Shang Chi',
-		img: 'shang.jpeg',
-		rating: '356',
-		id: 1
-	},
-	{
-		title: 'Black Chisas',
-		img: 'shang.jpeg',
-		rating: '2',
-		id: 2
-	},
-	{
-		title: 'Shang Chi',
-		img: 'shang.jpeg',
-		rating: '3356',
-		id: 3
-	},
-	{
-		title: 'Pokemon Chisas',
-		img: 'shang.jpeg',
-		rating: '326',
-		id: 4
-	}
-];
 
 export const IS_VALID_FORM: ValidityForm = {
 	isValid: true,
@@ -58,26 +20,16 @@ export const AUTHORIZATION: Authorization = {
 	isLogined: false
 };
 
-export const DATA: Array<IData> = [
-	{
-		buttonSearch: 'Искать',
-		search: 'Поиск',
-		textSearch:
-			'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.',
-		placeholderSearch: 'Введите название'
-	},
-	{
-		hiddenTitleForSEO: 'Мир фильмов'
-	},
-	{
-		auth: 'Вход',
-		buttonAuth: 'Войти в профиль',
-		placeholderAuth: 'Ваше имя'
-	},
-	{
-		favoritesTitle: 'Избранное'
-	},
-	{
-		film: 'Avengers: Endgame'
-	}
-];
+export enum DATA {
+	BUTTON_SEARCH = 'Искать',
+	SEARCH = 'Поиск',
+	TEXT_SEARCH = 'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.',
+	PLACEHOLDER_SEARCH = 'Введите название',
+	HIDDEN_TITLE = 'Мир фильмов',
+	AUTH = 'Вход',
+	BUTTON_AUTH = 'Войти в профиль',
+	PLACEHOLDER_AUTH = 'Ваше имя',
+	FAVORITES_TITLE = 'Избранное',
+	NOT_FOUND_TITLE = 'Упс... Ничего не найдено!',
+	NOT_FOUND_TEXT = 'Попробуйте изменить запрос или ввести более точное название фильма'
+}

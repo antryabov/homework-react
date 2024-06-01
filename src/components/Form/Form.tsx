@@ -10,9 +10,11 @@ import {
 } from 'react';
 import Input from '../Input/Input';
 import { IS_VALID_FORM } from '../../constants/constants';
+
 import { ActionType, formReducer } from './Form.state';
 import { UserContext } from '../../contexts/user.context';
 import { FormProps } from './Form.props';
+import { useNavigate } from 'react-router-dom';
 
 function Form({
 	name,
@@ -24,6 +26,8 @@ function Form({
 	onSubmitForm
 }: FormProps) {
 	const [formState, dispatchForm] = useReducer(formReducer, IS_VALID_FORM);
+
+	const navigate = useNavigate();
 
 	const { setUserLogined } = useContext(UserContext);
 
@@ -47,7 +51,7 @@ function Form({
 
 		if (!isValid) {
 			timerId = setTimeout(() => {
-				dispatchForm({ type: ActionType.Reset });
+				dispatchForm({ type: ActionType.RESET });
 			}, 2500);
 		}
 		return () => {
@@ -64,21 +68,22 @@ function Form({
 					login: value,
 					isLogined: true
 				});
+				navigate('/');
 			}
 			onSubmitForm(value);
 
-			dispatchForm({ type: ActionType.Clear });
+			dispatchForm({ type: ActionType.CLEAR });
 		}
-	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value, name]);
+	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value, name, navigate]);
 
 	function searchInput(event: FormEvent) {
 		event.preventDefault();
-		dispatchForm({ type: ActionType.Submit });
+		dispatchForm({ type: ActionType.SUBMIT });
 	}
 
 	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
 		dispatchForm({
-			type: ActionType.SetValue,
+			type: ActionType.SET_VALUE,
 			payload: event.target.value
 		});
 	};

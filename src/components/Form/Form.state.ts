@@ -1,35 +1,35 @@
 import { IS_VALID_FORM, ValidityForm } from '../../constants/constants';
 
 export enum ActionType {
-	Reset = 'RESET_VALIDITY',
-	Submit = 'SUBMIT',
-	SetValue = 'SET_VALUE',
-	Clear = 'CLEAR'
+	RESET = 'RESET_VALIDITY',
+	SUBMIT = 'SUBMIT',
+	SET_VALUE = 'SET_VALUE',
+	CLEAR = 'CLEAR'
 }
 
 type Action =
 	| {
-			type: ActionType.SetValue;
+			type: ActionType.SET_VALUE;
 			payload: string;
 	  }
 	| {
-			type: ActionType.Reset;
+			type: ActionType.RESET;
 			payload?: string;
 	  }
 	| {
-			type: ActionType.Submit;
+			type: ActionType.SUBMIT;
 			payload?: string;
 	  }
 	| {
-			type: ActionType.Clear;
+			type: ActionType.CLEAR;
 			payload?: string;
 	  };
 
 export function formReducer(state: ValidityForm, action: Action): ValidityForm {
 	switch (action.type) {
-		case ActionType.Reset:
+		case ActionType.RESET:
 			return { ...state, isValid: IS_VALID_FORM.isValid };
-		case ActionType.Submit: {
+		case ActionType.SUBMIT: {
 			const inputValidity = state?.value.trim().length;
 			return {
 				...state,
@@ -37,9 +37,9 @@ export function formReducer(state: ValidityForm, action: Action): ValidityForm {
 				isReadyToSubmit: inputValidity
 			};
 		}
-		case ActionType.SetValue:
+		case ActionType.SET_VALUE:
 			return { ...state, value: action.payload };
-		case ActionType.Clear:
+		case ActionType.CLEAR:
 			return {
 				...state,
 				value: IS_VALID_FORM.value,
