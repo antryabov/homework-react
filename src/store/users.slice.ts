@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Authorization } from '../constants/constants';
+import { getData } from './storage';
 /* import { store } from './store'; */
 
 interface UsersState {
@@ -8,8 +9,8 @@ interface UsersState {
 
 const initialState: UsersState = {
 	logined: {
-		login: '',
-		isLogined: false
+		login: getData('activeUser') ?? '',
+		isLogined: getData('activeUser') ? true : false
 	}
 };
 
@@ -18,10 +19,6 @@ export const usersSlice = createSlice({
 	initialState,
 	reducers: {
 		logined: (state, action: PayloadAction<Authorization>) => {
-			/* const existed = localStorage.getItem(
-				store.getState().users.logined.login
-			); */
-
 			state.logined = {
 				login: action.payload.login,
 				isLogined: action.payload.isLogined

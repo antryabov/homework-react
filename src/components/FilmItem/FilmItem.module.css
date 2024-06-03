@@ -49,6 +49,14 @@
 	color: var(--white-color);
 }
 
+.inFavorites {
+	color: #37d8a7;
+}
+
+.inFavorites:hover {
+	color: var(--white-color);
+}
+
 .films__info {
 	padding: 0;
 	display: flex;
@@ -60,14 +68,6 @@
 	font-weight: 600;
 	line-height: 24px;
 	max-width: 266px;
-}
-
-.inFavorites {
-	color: #37d8a7;
-}
-
-.inFavorites:hover {
-	color: var(--white-color);
 }
 
 .films__title {

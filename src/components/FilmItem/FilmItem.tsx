@@ -21,14 +21,10 @@ function FilmItem({ Title, Poster, rating, imdbID }: FilmItemProps) {
 				imdbID
 			})
 		);
-		saveData('users', [
-			...store.getState().favorites.favorites,
-			{
-				login: store.getState().users.logined.login,
-				films: [...store.getState().favorites.favorites]
-			}
-		]);
-		/* 	saveData('films', store.getState().favorites.favorites); */
+		saveData(
+			store.getState().users.logined.login,
+			store.getState().favorites
+		);
 	};
 
 	const removeFromFavorites = (event: MouseEvent) => {
@@ -41,15 +37,10 @@ function FilmItem({ Title, Poster, rating, imdbID }: FilmItemProps) {
 				rating
 			})
 		);
-		saveData(store.getState().users.logined.login, [
-			...store.getState().favorites.favorites
-		]);
-		/* 		saveData('films', [
-			{
-				login: store.getState().users.logined.login,
-				films: [...store.getState().favorites.favorites]
-			}
-		]); */
+		saveData(
+			store.getState().users.logined.login,
+			store.getState().favorites
+		);
 	};
 
 	return (
