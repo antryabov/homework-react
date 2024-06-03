@@ -6,5 +6,5 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 	classNameButton?: string | undefined;
 	placeholder: string;
 	icon?: ReactElement;
-	onSubmitForm: (params: string) => void;
+	onSubmitForm?: (params: string) => void;
 }

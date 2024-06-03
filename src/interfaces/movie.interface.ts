@@ -6,10 +6,11 @@ export interface Movies {
 
 export interface Search {
 	Title: string;
-	Year: string;
+	Year?: string;
 	imdbID: string;
-	Type: string;
+	Type?: string;
 	Poster: string;
+	rating?: string;
 }
 
 export interface filmCard {

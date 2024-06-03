@@ -1,4 +1,4 @@
 import { HTMLAttributes } from 'react';
-import { Movie } from '../../constants/constants';
+import { Search } from '../../interfaces/movie.interface';
 
-export type FilmItemProps = HTMLAttributes<HTMLElement> & Movie;
+export type FilmItemProps = HTMLAttributes<HTMLElement> & Search;

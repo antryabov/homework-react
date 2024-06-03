@@ -1,20 +1,17 @@
 import styles from './Form.module.css';
 import Button from '../Button/Button';
-import {
-	ChangeEvent,
-	FormEvent,
-	useContext,
-	useEffect,
-	useReducer,
-	useRef
-} from 'react';
+import { ChangeEvent, FormEvent, useEffect, useReducer, useRef } from 'react';
 import Input from '../Input/Input';
 import { IS_VALID_FORM } from '../../constants/constants';
 
 import { ActionType, formReducer } from './Form.state';
-import { UserContext } from '../../contexts/user.context';
+
 import { FormProps } from './Form.props';
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { usersAction } from '../../store/users.slice';
 
 function Form({
 	name,
@@ -26,10 +23,8 @@ function Form({
 	onSubmitForm
 }: FormProps) {
 	const [formState, dispatchForm] = useReducer(formReducer, IS_VALID_FORM);
-
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
-
-	const { setUserLogined } = useContext(UserContext);
 
 	const { isValid, value, isReadyToSubmit } = formState;
 
@@ -62,19 +57,22 @@ function Form({
 	useEffect(() => {
 		if (isReadyToSubmit) {
 			if (name === 'login') {
-				onSubmitForm(value);
+				dispatch(
+					usersAction.logined({
+						login: value,
+						isLogined: true
+					})
+				);
 
-				setUserLogined({
-					login: value,
-					isLogined: true
-				});
 				navigate('/');
 			}
-			onSubmitForm(value);
+			if (onSubmitForm !== undefined) {
+				onSubmitForm(value);
+			}
 
 			dispatchForm({ type: ActionType.CLEAR });
 		}
-	}, [isReadyToSubmit, onSubmitForm, setUserLogined, value, name, navigate]);
+	}, [isReadyToSubmit, onSubmitForm, value, name, navigate, dispatch]);
 
 	function searchInput(event: FormEvent) {
 		event.preventDefault();

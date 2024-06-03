@@ -16,8 +16,9 @@ function FilmList({ films }: FilmListProps) {
 						key={el.imdbID}
 					>
 						<FilmItem
-							title={el.Title}
-							img={el.Poster}
+							Title={el.Title}
+							Poster={el.Poster}
+							imdbID={el.imdbID}
 							rating={String(
 								parseInt(el.imdbID.split('').reverse().join(''))
 							)}

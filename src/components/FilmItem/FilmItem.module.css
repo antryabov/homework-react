@@ -45,6 +45,9 @@
 	line-height: 24px;
 	margin-top: auto;
 }
+.films__favorites:hover {
+	color: var(--white-color);
+}
 
 .films__info {
 	padding: 0;
@@ -57,6 +60,14 @@
 	font-weight: 600;
 	line-height: 24px;
 	max-width: 266px;
+}
+
+.inFavorites {
+	color: #37d8a7;
+}
+
+.inFavorites:hover {
+	color: var(--white-color);
 }
 
 .films__title {
