@@ -1,6 +1,6 @@
 .filmsCard {
 	width: 266px;
-	height: 515px;
+	height: 520px;
 }
 .films__rating {
 	top: 16px;
@@ -68,8 +68,9 @@
 	font-weight: 600;
 	line-height: 24px;
 	max-width: 266px;
+	gap: 5px;
 }
 
 .films__title {
-	margin-bottom: 16px;
+	margin-bottom: 0px;
 }
