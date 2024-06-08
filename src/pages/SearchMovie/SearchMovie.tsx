@@ -9,6 +9,7 @@ import Form from '../../components/Form/Form';
 import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../../helpers/API';
 import { Search, Movies } from '../../interfaces/movie.interface';
+import ErrorPage from '../Error/ErrorPage';
 
 function SearchMovie() {
 	const [films, setFilms] = useState<Search[]>([]);
@@ -26,6 +27,7 @@ function SearchMovie() {
 			setFilms(data.Search);
 		} catch (error) {
 			console.error(error);
+
 			if (error instanceof AxiosError) {
 				setError(error.message);
 			}
@@ -61,7 +63,7 @@ function SearchMovie() {
 				/>
 			</SectionBlock>
 			<SectionBlock className={styles.main__films}>
-				{error && <>{error}</>}
+				{error && <ErrorPage />}
 				<FilmList films={films} />
 			</SectionBlock>
 		</>

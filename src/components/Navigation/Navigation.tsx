@@ -1,15 +1,21 @@
-import { useContext } from 'react';
 import styles from './Navigation.module.css';
-import { UserContext } from '../../contexts/user.context';
-import { AUTHORIZATION } from '../../constants/constants';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { usersAction } from '../../store/users.slice';
 
 function Navigation() {
-	const { login, isLogined, setUserLogined } = useContext(UserContext);
+	const { isLogined, login } = useSelector(
+		(state: RootState) => state.users.logined
+	);
+	const favoritesFilms = useSelector(
+		(state: RootState) => state.favorites.favorites
+	);
+	const dispatch = useDispatch<AppDispatch>();
 
 	const onClick = () => {
-		setUserLogined(AUTHORIZATION);
+		dispatch(usersAction.logout());
 	};
 
 	if (isLogined) {
@@ -36,7 +42,9 @@ function Navigation() {
 					>
 						Мои фильмы
 					</NavLink>
-					<div className={styles.header__favoritesCount}>0</div>
+					<div className={styles.header__favoritesCount}>
+						{favoritesFilms.length}
+					</div>
 				</div>
 				<div className={styles.header__signIn}>
 					{login}

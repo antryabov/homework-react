@@ -2,3 +2,8 @@
 	font-size: 64px;
 	margin-bottom: 24px;
 }
+.main__favoritesFilms {
+	display: flex;
+	gap: 24px;
+	flex-wrap: wrap;
+}
